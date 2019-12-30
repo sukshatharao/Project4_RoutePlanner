@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[8]:
 
 
-#Reference: https://en.wikipedia.org/wiki/A*_search_algorithm
-#minimum priority queue keeps track of the least cost/distance of the paths to each point
 
 import math
-from graph_data import *
+from helpers import Map, load_map, show_map
+from student_code import shortest_path
+from test import test
+
 
 class Node(object):
     def __init__(self, element = None, priority = None):
@@ -47,7 +48,7 @@ def calculate_distance(point_xy1, point_xy2):
     y1 = point_xy1[1]
     x2 = point_xy2[0]
     y2 = point_xy2[1]
-    return sqrt( (x2 - x1)**2 + (y2 - y1)**2 )
+    return math.sqrt( (x2 - x1)**2 + (y2 - y1)**2 )
 
 def shortest_path(mapx, start, goal):
     # farthest points or paths already explored a.k.a the frontier
@@ -91,8 +92,8 @@ def shortest_path(mapx, start, goal):
 
 
 def main():
-    m40 = Map40()
-    m10 = Map10()
+    m40 = load_map('map-40.pickle')
+    m10 = load_map('map-10.pickle')
     print("shortest_path(m10, 0, 2) = [0, 5, 3, 2]:", shortest_path(m10, 0, 2))
     print("shortest_path(m40, 5, 34) = [5, 16, 37, 12, 34]:", shortest_path(m40, 5, 34))
     print("shortest_path(m40, 8, 24) = [8, 14, 16, 37, 12, 17, 10, 24]", shortest_path(m40, 8, 24))
@@ -101,12 +102,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# In[ ]:
-
-
-
 
 
 # In[ ]:
